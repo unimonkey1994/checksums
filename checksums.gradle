@@ -33,7 +33,7 @@ buildscript {
 import org.apache.commons.codec.digest.DigestUtils
 
 task "generateCheckSums" {
-  def sourceTree = fileTree(dir: projectDir, includes: ["**/*.xml", "**/*.jar", "**/*.pom"])
+  def sourceTree = fileTree(dir: projectDir, includes: ["**/*.xml", "**/*.jar", "**/*.pom", "**/*.war", "**/*.zip"])
   outputs.upToDateWhen {
     !sourceTree.find {File file ->
       File fileMd5 = new File(file.absolutePath + ".md5")
@@ -63,7 +63,7 @@ task "generateCheckSums" {
 }
 
 task "cleanCheckSums" {
-  def sourceTree = fileTree(dir: projectDir, includes: ["**/*.xml", "**/*.jar", "**/*.pom"])
+  def sourceTree = fileTree(dir: projectDir, includes: ["**/*.xml", "**/*.jar", "**/*.pom", "**/*.war", "**/*.zip"])
   outputs.upToDateWhen {
     !sourceTree.find {File file ->
       new File(file.absolutePath + ".md5").exists() ||
